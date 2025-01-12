@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "850951154685",
+    "project_id": "cm-nutricao",
+    "storage_bucket": "cm-nutricao.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850951154685:android:21113ee4871b51a5120794",
+        "android_client_info": {
+          "package_name": "com.example.cmnutricao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850951154685-9bamhpqus99q8rslg0jqi5lq0pn4gic8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFHvW_DnARQVgmd_NNAKkV10G971_NeLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850951154685-9bamhpqus99q8rslg0jqi5lq0pn4gic8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
