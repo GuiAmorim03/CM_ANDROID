@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.cmnutricao.repository.MealPlannerData
 import com.example.cmnutricao.screens.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -27,8 +28,10 @@ fun AppNavigation(
             startDestination = "Meal Planner",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("Meal Planner") { RegistMeal(navController) }
+            composable("Meal Planner") { MealPlanner(navController) }
             composable("Profile") { Profile(navController) }
+            composable("Plan Daily Meal") { MealPlannerDaily(navController) }
+            composable("Create Meal Planner") { MealPlannerCreator(navController) }
         }
     }
 }
