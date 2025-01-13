@@ -1,8 +1,15 @@
 package com.example.cmnutricao.repository
 
+import android.content.Context
 import android.util.Log
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.cmnutricao.notifications.WaterReminder
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import java.util.concurrent.TimeUnit
 
 data class MealPlannerData(
     val id: String = "",
@@ -52,7 +59,7 @@ class MealPlannerRepository {
         }
     }
 
-    suspend fun createMealPlanner(planner: MealPlannerData) {
+    suspend fun createMealPlanner(planner: MealPlannerData, context: Context) {
         val userId = planner.userId
         val mealPlannersCollection = db.collection("meal_planners")
         val userDocument = mealPlannersCollection.document(userId)
@@ -66,5 +73,22 @@ class MealPlannerRepository {
         }
 
         userDocument.set(planner).await()
+
+        val waterFrequency = planner.water.toLong()
+        scheduleWaterReminder(context, waterFrequency)
     }
+
+    fun scheduleWaterReminder(context: Context, frequencyInMinutes: Long) {
+        Log.d("NOTIFICACOES", "Notificacoes de $frequencyInMinutes minutos")
+        val waterReminderRequest = PeriodicWorkRequest.Builder(WaterReminder::class.java, frequencyInMinutes, TimeUnit.MINUTES)
+            .build()
+
+
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            "WaterReminder",
+            ExistingPeriodicWorkPolicy.UPDATE,
+            waterReminderRequest
+        )
+    }
+
 }

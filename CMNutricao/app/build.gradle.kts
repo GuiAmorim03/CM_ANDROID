@@ -76,6 +76,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.google.auth)
     implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
     /*implementation(libs.firebase.firestore)*/
 
 }

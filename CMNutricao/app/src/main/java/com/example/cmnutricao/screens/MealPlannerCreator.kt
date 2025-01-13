@@ -99,7 +99,7 @@ fun MealPlannerCreator(navController: NavHostController) {
                 coroutineScope.launch {
                     isLoading = true
                     try {
-                        mealPlannerRepository.createMealPlanner(mealPlanner)
+                        mealPlannerRepository.createMealPlanner(mealPlanner, context)
                         Toast.makeText(context, "Meal Planner saved!", Toast.LENGTH_SHORT).show()
                         navController.navigate("Meal Planner")
                     } catch (e: Exception) {
