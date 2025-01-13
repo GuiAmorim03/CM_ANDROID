@@ -100,15 +100,6 @@ class LoginActivity : ComponentActivity() {
                 intent.putExtra("email", email)
                 startActivity(intent)
 
-                val newUser = hashMapOf(
-                    "id" to userId,
-                    "name" to name,
-                    "email" to email
-                )
-
-                userRef.set(newUser)
-                    .addOnSuccessListener { Log.d("Firestore", "User Saved") }
-                    .addOnFailureListener { e -> Log.e("Firestore", "Error saving user", e) }
             }
         }.addOnFailureListener { e ->
             Log.e("Firestore", "Error checking user", e)
