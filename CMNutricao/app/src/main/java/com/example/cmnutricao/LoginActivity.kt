@@ -88,14 +88,21 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
-    private fun createUserFireStore(userId: String, nome: String?, email: String?) {
+    private fun createUserFireStore(userId: String, name: String?, email: String?) {
         val userRef = db.collection("users").document(userId)
 
         userRef.get().addOnSuccessListener { document ->
             if (!document.exists()) {
+
+                val intent = Intent(this, RegistActivity::class.java)
+                intent.putExtra("userId", userId)
+                intent.putExtra("name", name)
+                intent.putExtra("email", email)
+                startActivity(intent)
+
                 val newUser = hashMapOf(
                     "id" to userId,
-                    "nome" to nome,
+                    "name" to name,
                     "email" to email
                 )
 
